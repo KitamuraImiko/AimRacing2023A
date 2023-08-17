@@ -144,7 +144,7 @@ public class BalancePoint : MonoBehaviour
         rootRigidbody = root.GetComponent<Rigidbody>();
         carbody = root.transform.Find("carbody").gameObject;
         wheelCollideres = root.transform.Find("WheelColliders").gameObject;
-        chair = root.transform.Find("WIZMO").GetComponent<ChairController>();
+        //chair = root.transform.Find("WIZMO").GetComponent<ChairController>();
 
         // ----------ブレーキに関するクラスを取得(0809船渡)---------------
         VehicleController = root.GetComponent<AIM.VehicleController>();
@@ -174,7 +174,7 @@ public class BalancePoint : MonoBehaviour
         prevBalancePoint = balancePoint;
 
         // ブレーキ入力量を保存しておく(2023/08/09 船渡)
-        BrakeInput = WheelInput.GetInputBreke + BrakeCorrection;
+        //BrakeInput = WheelInput.GetInputBreke + BrakeCorrection;
 
         // 経ったフレーム数をカウントする
         ++cnt;
@@ -267,7 +267,7 @@ public class BalancePoint : MonoBehaviour
             (acceleration > 4 && prevAcceleration > 4))
         {
             extremeValue_z = ((int)(acceleration * farwordCoefficient * 4.0f)) / 4.0f;
-            chair.Accel((balancePoint.z + extremeValue_z) / 2);
+            //chair.Accel((balancePoint.z + extremeValue_z) / 2);
            // Debug.Log("0_ChairUpdate_if");
            // Debug.Log($"0_extremeValue_z : {extremeValue_z}");
             //Debug.Log($"0_extremeValue_z : {(balancePoint.z + extremeValue_z) / 2}");
@@ -286,7 +286,7 @@ public class BalancePoint : MonoBehaviour
                 {
                     extremeValue_z = temp;
 
-                    chair.Accel((balancePoint.z + extremeValue_z) / 2);
+                    //chair.Accel((balancePoint.z + extremeValue_z) / 2);
                     //Debug.Log("0_ChairUpdate_Accel_elif");
                     //Debug.Log($"0_extremeValue_z : {extremeValue_z}");
                     //Debug.Log($"0_extremeValue_z : {(balancePoint.z + extremeValue_z) / 2}");
@@ -300,7 +300,7 @@ public class BalancePoint : MonoBehaviour
                 // 値を保存する
                 extremeValue_z = ((int)(acceleration * farwordCoefficient * 4.0f)) / 4.0f;
                 
-                chair.Accel((balancePoint.z + extremeValue_z) / 2);
+                //chair.Accel((balancePoint.z + extremeValue_z) / 2);
                 //Debug.Log("0_ChairUpdate_Accel_else");
                 //Debug.Log($"0_extremeValue_z : {extremeValue_z}");
                 //Debug.Log($"0_extremeValue_z : {(balancePoint.z + extremeValue_z) / 2}");
@@ -344,7 +344,7 @@ public class BalancePoint : MonoBehaviour
         // 新しい値で更新する
         extremeValue_x = Mathf.Clamp(temp, -5, 5);
         bIsBalancePointXChange = true;
-        chair.Steering(extremeValue_x);
+        //chair.Steering(extremeValue_x);
     }
 
     //━━━━━━━━━━━━━━━━━━━━━
@@ -364,7 +364,7 @@ public class BalancePoint : MonoBehaviour
         if (Mathf.Abs(ascend - prevAscend) > ascendThreshold)
         {
             balancePoint.y = (ascend - prevAscend) * upCoefficient;
-            chair.Vibration(balancePoint.y);
+            //chair.Vibration(balancePoint.y);
         }
 
         // 超えてない場合は０にする

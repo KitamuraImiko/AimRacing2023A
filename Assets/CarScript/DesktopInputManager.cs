@@ -232,8 +232,9 @@ namespace AIM
                 //	Debug.Log("EngineStop");
                 //	vc.engine.Toggle();
                 //}
-                if (vc.engine.isEngineStopFlag() && (Input.GetAxis("R_Trigger").Round(inputDigit) > 0.0 || Input.GetAxisRaw("Vertical").Round(inputDigit) > 0.0 || AIM.InputHandleController.GetHandleAccelCheck() > 0.0f))
+                if (/*vc.engine.isEngineStopFlag() &&*/ (Input.GetAxis("R_Trigger").Round(inputDigit) > 0.0 || Input.GetAxisRaw("Vertical").Round(inputDigit) > 0.0 || AIM.InputHandleController.GetHandleAccelCheck() > 0.0f))
                 {
+                    Debug.LogError("スタート");
                     vc.engine.Stop();
                     vc.input.Vertical = 0f;
                 }

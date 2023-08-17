@@ -354,9 +354,9 @@ namespace AIM
 			//
 			if (!input.Horizontal.IsDeadzoneZero() || !input.Vertical.IsDeadzoneZero()) ResetInactivityTimer();
 
-			//エンジン処理の更新
-			if (engine.Starting || engine.Stopping)
-				engine.Update();
+			////エンジン処理の更新
+			//if (engine.Starting || engine.Stopping)
+			//	engine.Update();
 
 			//ホイール処理の更新
 			foreach (AxleWheel wheel in wheels)
@@ -675,8 +675,8 @@ namespace AIM
 				{
 					if (input.Vertical.IsDeadzoneZero(0.05f) && transmission.Gear > 0)
 					{
-						rb.drag = engine.EngineBrake(transmission.Gear - 1);
-
+                        rb.drag = engine.EngineBrake(transmission.Gear - 1);
+                        Debug.LogError("エンジンブレーキ（疑似的に）");
 					}
 					else
 					{

@@ -34,7 +34,7 @@ namespace AIM
         public float ChackGearNum2 = 0;        // エラーが出たときの確認変数
 
         [Range(0.0f, 1.0f)]
-        public float throttleSmoothing = 0.2f;
+        public float throttleSmoothing = 0.2f; // スロットルの滑らかにするもの（？）
 
         public AnimationCurve powerCurve = new AnimationCurve(new Keyframe[3] {
                 new Keyframe(0f, 0f),
@@ -52,17 +52,17 @@ namespace AIM
         [SerializeField]
         public List<float> acceleOnLimit = new List<float>();
 
-        public float rpm;
+        public float rpm;                   // RPM
 
-        private float prevRpm;
-        private float rpmPercent;
-        private float rpmOverflow;
+        private float prevRpm;              // 前へのRPM
+        private float rpmPercent;           // rpmのパーセント
+        private float rpmOverflow;          // rpmのオーバーフロー
 
-        public float power;
+        public float power;                 // 力
 
-        private float throttle = 0f;
-        private float prevThrottle = 0f;
-        private float throttleVelocity = 0f;
+        private float throttle = 0f;        // スロットル
+        private float prevThrottle = 0f;    // 前へのスロットル
+        private float throttleVelocity = 0f;// スロットルの速度
 
         private float startDuration = 1f;   //起動ラグ
         private float stopDuration = 1f;    //停止ラグ
@@ -121,6 +121,7 @@ namespace AIM
                     return false;
             }
         }
+
 
         public float RPM
         {
@@ -338,7 +339,7 @@ namespace AIM
 
                 forcedInduction.Update();
 
-                // 代入
+                // 代入パート
                 prevRpm = rpm;
 
                 rpmOverflow = 0;
@@ -409,11 +410,18 @@ namespace AIM
             prevThrottle = throttle;  // スロットルを前スロットルに入れる
             power = 0;
 
-            if (!starting && !stopping && IsRunning && !FuelCutoff && !vc.transmission.Shifting)
+            //  if (!starting && !stopping && IsRunning && !FuelCutoff && !vc.transmission.Shifting)
+            // 始まってる最中ではなく、止まってるわけでもおらず、今現在進行形で走ってて、燃料切れて無くて、シフト変更を行っていない時。
+            // このif文がない場合キーボード操作が効かない
+            if (false==starting && false == stopping && IsRunning && false == FuelCutoff && false == vc.transmission.Shifting)
             {
+                // スロットルに垂直の値を渡す。
                 throttle = vc.input.Vertical;
 
+                //他スクリプトからギアの値をもらう。
                 int gear = vc.transmission.Gear;
+                //Debug.LogError("なにこれ");
+                // ギアごとのスロットル制限が入っている時
                 if (vc.transmission.useThrottleLimiting)
                 {
                     if (gear < 0)
@@ -482,6 +490,7 @@ namespace AIM
                 // 前に進む力を5倍したものより各アクセル限界値の方が値が高かったら。
                 if (vc.SpeedKPH < acceleOnLimit[vc.transmission.Gear])
                 {
+                    Debug.LogError("藤森");
                     // YES
                     return true;
                 }
@@ -494,8 +503,9 @@ namespace AIM
             return false;
         }
 
+        // 使われてないのでカット
         //===============================================
-        // イントロ用
+/*        // イントロ用
         public void IntroSetMaxRPM()
         {
             maxRPM = prevMaxRPM;
@@ -505,9 +515,11 @@ namespace AIM
         {
             prevMaxRPM = max;
             maxRPM = 7300.0f;
-        }
+        }*/
         //===============================================
 
+        // エンジンブレーキについての処理
+        // いる？
         public float EngineBrake(int gear)
         {
             return engineBrake[gear];

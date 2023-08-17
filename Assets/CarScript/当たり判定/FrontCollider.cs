@@ -124,7 +124,7 @@ public class FrontCollider : MonoBehaviour
             rotateCurve.AddKey(1, 0);
         }
 
-        chair = root.transform.Find("WIZMO").GetComponent<ChairController>();
+        //chair = root.transform.Find("WIZMO").GetComponent<ChairController>();
     }
 
     //━━━━━━━━━━━━━━━━━━━━━━━
@@ -141,7 +141,7 @@ public class FrontCollider : MonoBehaviour
         {
             if (AngleCorrectionCnt <= NumberOfFramesToBeSplit / 2 && bRightHit) return;
 
-            chair.Hit(true);
+            //chair.Hit(true);
 
             // -----------壁に当たっているかどうかの監視(2023/08/09船渡)----------------
             bRigheHitWall = true;
@@ -248,7 +248,7 @@ public class FrontCollider : MonoBehaviour
         {
             if (AngleCorrectionCnt <= NumberOfFramesToBeSplit / 2 && bLeftHit) return;
 
-            chair.Hit(false);
+            //chair.Hit(false);
 
             // -----------壁に当たっているかどうかの監視(2023/08/09船渡)----------------
             bLeftHitWall = true;

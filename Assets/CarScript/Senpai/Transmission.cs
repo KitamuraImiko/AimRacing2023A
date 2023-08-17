@@ -125,7 +125,7 @@ namespace AIM
 			UpdateRandomShiftDuration();
 			UpdateRandomShiftPointAddition();
 
-			chair = GameObject.Find("WIZMO").GetComponent<ChairController>();
+			//chair = GameObject.Find("WIZMO").GetComponent<ChairController>();
 
 
             Gear = 0;
@@ -485,8 +485,8 @@ namespace AIM
 					UpdateRandomShiftPointAddition();
 					if (startTimer) StartTimer();
 				}
-				if (gear > prevGear) chair.ShiftUp();
-				else chair.ShiftDown();
+				//if (gear > prevGear) chair.ShiftUp();
+				//else chair.ShiftDown();
 			}
 		}
 

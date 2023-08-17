@@ -807,7 +807,7 @@ namespace AIM
                 fFriction.slip = fClampedForwardSpeed == 0.0f ? 0.0f : (((wheel.angularVelocity * wheel.tireRadius) - fFriction.speed) / fClampedForwardSpeed) * fFriction.slipCoefficient;
             }
 
-            fFriction.slip *= vc.loadCom.LerpForceCoef(vehicleFRSide, vehicleLRSide);
+            //fFriction.slip *= vc.loadCom.LerpForceCoef(vehicleFRSide, vehicleLRSide);
             //sFriction.slip *= vc.loadCom.LerpForceCoef(vehicleFRSide, vehicleLRSide);
 
             float clampedSlip = Mathf.Clamp(Mathf.Abs(fFriction.slip), CLAMPED_SLIP_MIN, Mathf.Infinity);
